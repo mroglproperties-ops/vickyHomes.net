@@ -608,6 +608,9 @@ footer {
 
 
 @media (max-width: 768px) {
+    header {
+        position: static;
+    }
     main {
         padding: 30px 20px;
     }
