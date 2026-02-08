@@ -613,7 +613,7 @@ footer {
     }
 }
 
-@media (max-height: 600px) and (orientation: landscape) {
+@media (orientation: landscape) {
     header {
         position: static;
     }
