@@ -611,6 +611,7 @@ footer {
     header {
         position: static;
     }
+
     main {
         padding: 30px 20px;
     }
@@ -626,6 +627,12 @@ footer {
     nav ul {
         gap: 15px;
         font-size: 14px;
+    }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+    header {
+        position: static;
     }
 }
 
