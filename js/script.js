@@ -22,8 +22,27 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = totalOriginalImages;
     const allImages = slideshowContainer.querySelectorAll('img');
 
+    const isSingle = heroBanner.classList.contains('hero-banner--single');
+    const isDouble = heroBanner.classList.contains('hero-banner--double');
+
+    function setSingleWidths() {
+      if (isSingle) {
+        const containerWidth = heroBanner.offsetWidth;
+        Array.from(allImages).forEach(img => {
+          img.style.width = containerWidth + 'px';
+        });
+      } else if (isDouble) {
+        const containerWidth = heroBanner.offsetWidth;
+        Array.from(allImages).forEach(img => {
+          img.style.width = Math.floor((containerWidth - 20) / 2) + 'px';
+        });
+      }
+    }
+
     function updateSlidePosition(noTransition = false) {
-      const slideWidth = allImages[0].offsetWidth + 20;
+      setSingleWidths();
+      const gap = isSingle ? 0 : 20;
+      const slideWidth = allImages[0].offsetWidth + gap;
       slideshowContainer.style.transition = noTransition ? 'none' : 'transform 0.3s ease-in-out';
       slideshowContainer.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
     }
@@ -110,10 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Set active navigation link
-  const currentPage = window.location.pathname.split('/').pop() || 'home.html';
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   navLinks.forEach(link => {
     const linkHref = link.getAttribute('href');
-    if (linkHref === currentPage || (currentPage === '' && linkHref === 'home.html')) {
+    if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
       link.classList.add('active');
     }
   });
